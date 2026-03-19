@@ -54,7 +54,7 @@ export default async function LoginPage({ searchParams }: LoginPageProps) {
             className="w-full flex items-center justify-center gap-3 px-6 py-4 bg-primary-500 text-white rounded-xl hover:bg-primary-600 transition-colors font-medium"
           >
             <LogIn className="w-5 h-5" />
-            使用 SecondMe 登录
+            同意
           </a>
 
           <p className="text-center text-sm text-slate-500 mt-6">
