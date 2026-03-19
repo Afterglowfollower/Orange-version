@@ -4,12 +4,13 @@
 const SECONDME_CLIENT_ID = process.env.SECONDME_CLIENT_ID
 const SECONDME_CLIENT_SECRET = process.env.SECONDME_CLIENT_SECRET
 const SECONDME_REDIRECT_URI = process.env.SECONDME_REDIRECT_URI
-const SECONDME_OAUTH_AUTHORIZE_URL = process.env.SECONDME_OAUTH_AUTHORIZE_URL || 'https://go.second.me/oauth/'
-const SECONDME_OAUTH_TOKEN_URL = process.env.SECONDME_OAUTH_TOKEN_URL || 'https://api.mindverse.com/gate/lab/api/oauth/token/code'
-const SECONDME_OAUTH_REFRESH_URL = process.env.SECONDME_OAUTH_REFRESH_URL || 'https://api.mindverse.com/gate/lab/api/oauth/token/refresh'
-const SECONDME_USERINFO_URL = process.env.SECONDME_USERINFO_URL || 'https://api.mindverse.com/gate/lab/api/secondme/user/info'
-const SECONDME_CHAT_URL = process.env.SECONDME_CHAT_URL || 'https://api.mindverse.com/gate/lab/api/secondme/chat/stream'
-const SECONDME_NOTE_URL = process.env.SECONDME_NOTE_URL || 'https://api.mindverse.com/gate/lab/api/secondme/note/add'
+const SECONDME_API_BASE = process.env.SECONDME_API_BASE_URL || 'https://app.mindos.com/gate/lab'
+const SECONDME_OAUTH_AUTHORIZE_URL = process.env.SECONDME_OAUTH_AUTHORIZE_URL || 'https://second.me/oauth/authorize'
+const SECONDME_OAUTH_TOKEN_URL = process.env.SECONDME_OAUTH_TOKEN_URL || `${SECONDME_API_BASE}/api/oauth/token/code`
+const SECONDME_OAUTH_REFRESH_URL = process.env.SECONDME_OAUTH_REFRESH_URL || `${SECONDME_API_BASE}/api/oauth/token/refresh`
+const SECONDME_USERINFO_URL = process.env.SECONDME_USERINFO_URL || `${SECONDME_API_BASE}/api/secondme/user/info`
+const SECONDME_CHAT_URL = process.env.SECONDME_CHAT_URL || `${SECONDME_API_BASE}/api/secondme/chat/stream`
+const SECONDME_NOTE_URL = process.env.SECONDME_NOTE_URL || `${SECONDME_API_BASE}/api/secondme/note/add`
 
 // 检查必需的环境变量
 function checkRequiredEnvVars() {
@@ -267,7 +268,7 @@ export async function sendChatMessage(
 // Key Memory - 读取（获取用户软记忆）
 // 响应格式: { code: 0, data: { list: [...] } }
 export async function getNotes(accessToken: string, category?: string) {
-  const SECONDME_API_BASE_URL = process.env.SECONDME_API_BASE_URL || 'https://api.mindverse.com/gate/lab'
+  const SECONDME_API_BASE_URL = process.env.SECONDME_API_BASE_URL || 'https://app.mindos.com/gate/lab'
   const url = `${SECONDME_API_BASE_URL}/api/secondme/user/softmemory${category ? `?category=${category}` : ''}`
 
   const response = await fetch(url, {
@@ -289,7 +290,7 @@ export async function getNotes(accessToken: string, category?: string) {
 // 获取用户 Shades（人格特质）
 // 勃应格式: { code: 0, data: { shades: [...] } }
 export async function getUserShades(accessToken: string): Promise<string[]> {
-  const SECONDME_API_BASE_URL = process.env.SECONDME_API_BASE_URL || 'https://api.mindverse.com/gate/lab'
+  const SECONDME_API_BASE_URL = process.env.SECONDME_API_BASE_URL || 'https://app.mindos.com/gate/lab'
   const url = `${SECONDME_API_BASE_URL}/api/secondme/user/shades`
 
   const response = await fetch(url, {
