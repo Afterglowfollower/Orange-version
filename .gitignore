@@ -41,3 +41,4 @@ prisma/dev.db
 
 # SecondMe config (sensitive)
 .secondme/
+secondme_api_base_url
